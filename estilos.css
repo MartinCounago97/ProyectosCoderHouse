@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #eee;
+}
+
+/* Contenedor del header */
+.header {
+  text-align: center; /* centra el H1 y el nav */
+  padding: 20px 0;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Título */
+.header h1 {
+  margin: 0 0 10px 0; /* un poco de espacio debajo del H1 */
+}
+
+/* Menú horizontal */
+.header nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* items uno al lado del otro */
+  justify-content: center; /* centra los items */
+  gap: 20px; /* espacio entre los items */
+}
+
+.header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+}
+
+.header nav ul li a:hover {
+  background-color: #ddd;
+}
+
+form {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  width: 350px;
+}
+form h1 {
+  margin-bottom: 20px;
+}
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.form-group label {
+  width: 100px; /* mismo ancho para todas las etiquetas */
+  text-align: right; /* alinear texto a la derecha */
+  margin-right: 10px;
+}
+.form-group input {
+  flex: 1;
+  padding: 5px;
+}
+.form-container {
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  align-items: center; /* centra verticalmente */
+  min-height: calc(100vh - 120px); /* altura de la ventana menos el header */
+  padding: 20px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilos.css" />
+    <script defer src="scriptWeb.js"></script>
+    <title>PROYECTOS</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>ALTA PROYECTO</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="proyecto.html">Crear Proyecto</a></li>
+          <li><a href="caso.html">Crear Caso de Prueba</a></li>
+          <li><a href="listar.html">Listar Proyectos y Casos</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="form-container">
+      <form id="formProyecto">
+        <h1>Crear Proyecto</h1>
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombreProyecto" name="nombre" />
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <input type="text" id="descripcionProyecto" name="descripcion" />
+        </div>
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+  </body>
+</html>
