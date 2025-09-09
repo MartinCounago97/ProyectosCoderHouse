@@ -70,6 +70,7 @@ function asignarCasoAProyecto(casoId, proyectoId) {
   const proyecto = proyectos.find((p) => p.id === proyectoId);
   if (caso && proyecto) {
     caso.proyectoId = proyectoId;
+    caso.actualizarEstado("Asignado");
     proyecto.casosDePrueba.push(caso);
   } else {
     alert("Caso o proyecto no encontrado");
@@ -92,7 +93,7 @@ function mostrarResumenProyecto(proyectoId) {
 }
 
 function listarProyectos() {
-  if (proyectos.length === 0) {
+  if (proyectos.length == 0) {
     alert("No hay proyectos creados");
     return;
   }
@@ -104,7 +105,7 @@ function listarProyectos() {
 }
 
 function listarCasos() {
-  if (casosDePrueba.length === 0) {
+  if (casosDePrueba.length == 0) {
     alert("No hay casos de prueba creados");
     return;
   }
