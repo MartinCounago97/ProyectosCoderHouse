@@ -1,4 +1,4 @@
-// VARIABLES
+// VARIABLES GLOBALES
 let proyectoId = 1;
 let casoId = 1;
 let proyectos = [];
@@ -91,11 +91,35 @@ function mostrarResumenProyecto(proyectoId) {
   alert(resumen);
 }
 
+function listarProyectos() {
+  if (proyectos.length === 0) {
+    alert("No hay proyectos creados");
+    return;
+  }
+  let listado = "Proyectos:\n";
+  proyectos.forEach((proyecto) => {
+    listado += proyecto.descripcionCompleta() + "\n";
+  });
+  alert(listado);
+}
+
+function listarCasos() {
+  if (casosDePrueba.length === 0) {
+    alert("No hay casos de prueba creados");
+    return;
+  }
+  let lista = "Casos de pruebas:\n";
+  casosDePrueba.forEach((caso) => {
+    lista += caso.descripcionCompleta() + "\n";
+  });
+  alert(lista);
+}
+
 function menu() {
   let opcion;
   do {
     opcion = prompt(
-      "Seleccione una opción:\n1. Crear Proyecto\n2. Crear Caso de Prueba\n3. Asignar Caso a Proyecto\n4. Mostrar Resumen de Proyecto\n5. Salir"
+      "Seleccione una opción:\n1. Crear Proyecto\n2. Crear Caso de Prueba\n3. Asignar Caso a Proyecto\n4. Mostrar Resumen de Proyecto\n5. Listado proyectos\n6. Listado casos\n7. Salir"
     );
     switch (opcion) {
       case "1":
@@ -122,12 +146,20 @@ function menu() {
         mostrarResumenProyecto(idProj);
         break;
       case "5":
+        listarProyectos();
+        break;
+        break;
+      case "6":
+        listarCasos();
+        break;
+        break;
+      case "7":
         console.log("Saliendo...");
         break;
       default:
         console.log("Opción no válida");
     }
-  } while (opcion !== "5");
+  } while (opcion !== "7");
 }
 
 menu();
