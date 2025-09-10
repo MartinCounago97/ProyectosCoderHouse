@@ -3,44 +3,41 @@ let proyectoId = 1;
 let casoId = 1;
 let proyectos = [];
 let casosDePrueba = [];
+let loginActual = null;
 
-//CLASES
-class Proyecto {
-  constructor(id, nombre, descripcion) {
-    this.id = id;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.casosDePrueba = [];
-  }
+function iniciar() {
+  alert("BIENVENIDO AL SIMULADOR DE GESTIÓN DE PROYECTOS Y CASOS DE PRUEBA");
 
-  getCasos() {
-    return this.casosDePrueba;
-  }
-
-  descripcionCompleta() {
-    return `${this.id} - ${this.nombre} - ${this.descripcion}`;
+  if (login()) {
+    localStorage.setItem("loginActual", JSON.stringify(loginActual));
+    menu();
+  } else {
+    alert("No se pudo iniciar sesión. Saliendo del programa.");
   }
 }
 
-class CasoDePrueba {
-  constructor(id, nombre, descripcion) {
-    this.id = id;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.estado = "Pendiente";
-    this.proyectoId = null;
+function login() {
+  let username = prompt("Ingrese su nombre de usuario:");
+  let password = prompt("Ingrese su contraseña:");
+  if (username && password) {
+    return autenticar(username, password);
+  } else {
+    alert("Credenciales incorrectas");
+    return false;
   }
+}
 
-  getEstado() {
-    return this.estado;
-  }
-
-  actualizarEstado(nuevoEstado) {
-    this.estado = nuevoEstado;
-  }
-
-  descripcionCompleta() {
-    return `${this.id} - ${this.nombre} - ${this.descripcion} - Estado: ${this.estado}`;
+function autenticar(username, password) {
+  let loginValido = logines.find(
+    (l) => l.username === username && l.password === password
+  );
+  if (loginValido) {
+    alert("BIENVENIDO " + loginValido.getCliente().nombre);
+    loginActual = loginValido;
+    return true;
+  } else {
+    alert("Credenciales incorrectas");
+    return false;
   }
 }
 
@@ -70,8 +67,9 @@ function asignarCasoAProyecto(casoId, proyectoId) {
   const proyecto = proyectos.find((p) => p.id === proyectoId);
   if (caso && proyecto) {
     caso.proyectoId = proyectoId;
-    caso.actualizarEstado("Asignado");
+    caso.setEstado("Asignado");
     proyecto.casosDePrueba.push(caso);
+    alert("Caso asignado al proyecto correctamente");
   } else {
     alert("Caso o proyecto no encontrado");
   }
@@ -162,5 +160,3 @@ function menu() {
     }
   } while (opcion !== "7");
 }
-
-menu();
