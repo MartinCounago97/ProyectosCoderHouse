@@ -1,8 +1,8 @@
 // VARIABLES GLOBALES
-let proyectoId = 1;
-let casoId = 1;
-let proyectos = [];
-let casosDePrueba = [];
+let proyectoId = parseInt(localStorage.getItem("proyectoId")) || 0;
+let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+let casoId = parseInt(localStorage.getItem("casoId")) || 0;
+let casosDePrueba = JSON.parse(localStorage.getItem("casosDePrueba")) || [];
 let loginActual = null;
 
 function iniciar() {
@@ -47,9 +47,13 @@ function crearProyecto(nombre, descripcion) {
     alert("Nombre y descripción son obligatorios");
     return;
   }
-  let proyecto = new Proyecto(proyectoId, nombre, descripcion);
-  proyectoId++;
+
+  let proyecto = new Proyecto(proyectoId++, nombre, descripcion);
+
   proyectos.push(proyecto);
+  localStorage.setItem("proyectos", JSON.stringify(proyectos));
+  localStorage.setItem("proyectoId", proyectoId);
+  alert("Proyecto creado correctamente");
 }
 
 function crearCasoDePrueba(nombre, descripcion) {
@@ -57,9 +61,11 @@ function crearCasoDePrueba(nombre, descripcion) {
     alert("Nombre y descripción son obligatorios");
     return;
   }
-  let casoDePrueba = new CasoDePrueba(casoId, nombre, descripcion);
-  casoId++;
+  let casoDePrueba = new CasoDePrueba(casoId++, nombre, descripcion);
   casosDePrueba.push(casoDePrueba);
+  localStorage.setItem("casosDePrueba", JSON.stringify(casosDePrueba));
+  localStorage.setItem("casoId", casoId);
+  alert("Caso de prueba creado correctamente");
 }
 
 function asignarCasoAProyecto(casoId, proyectoId) {
