@@ -5,41 +5,82 @@ body {
   text-align: center;
 }
 
-.header {
-  text-align: center;
-  padding: 20px 0;
-  background-color: #f9f9f9;
-  border-bottom: 1px solid #ccc;
+/* Proyectos*/
+.contenedorProyectos {
+  display: flex;
+  height: 100vh;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
 }
-a {
+
+.btnVolver {
+  display: block;
+  margin-top: 300px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
   text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Formulario */
+.formulario {
+  flex: 1;
+  text-align: left;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.formulario label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.formulario input,
+.formulario textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
 }
 
 button {
-  padding: 20px 30px;
+  padding: 12px 20px;
   background-color: #28a745;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 20px;
-  display: block;
-  margin: 20px auto 0 auto;
-}
-
-.login {
-  margin-top: 50px;
-  display: inline-block;
-  text-align: center;
-  padding: 20px;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-}
-
-.login input {
-  display: block;
-  margin: 10px auto;
-  padding: 10px;
-  width: 200px;
   font-size: 16px;
+  margin-top: 10px;
+}
+
+/* Listado */
+.listado {
+  flex: 1.5;
+  text-align: left;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+.proyecto {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.proyecto strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 18px;
 }

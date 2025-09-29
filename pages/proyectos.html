@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyectos</title>
+    <link rel="stylesheet" href="../estilos.css" />
+  </head>
+  <body>
+    <div class="contenedorProyectos">
+      <div class="formulario">
+        <h2>Crear Nuevo Proyecto</h2>
+        <form id="formProyecto">
+          <label for="nombreProyecto">Nombre del proyecto:</label>
+          <input
+            type="text"
+            id="nombreProyecto"
+            name="nombre"
+            required
+          /><br /><br />
+
+          <label for="descripcionProyecto">Descripción:</label>
+          <textarea
+            id="descripcionProyecto"
+            name="descripcion"
+            required
+          ></textarea
+          ><br />
+
+          <button id="btnAltaProyecto" type="submit">Crear Proyecto</button>
+        </form>
+
+        <a href="inicio.html" class="btnVolver">← Volver a inicio</a>
+      </div>
+
+      <div class="listado">
+        <h2>Proyectos creados</h2>
+        <div id="listaProyectos"></div>
+      </div>
+    </div>
+    <script src="../clases/Proyecto.js"></script>
+    <script src="../clases/Colecciones.js"></script>
+    <script src="../main.js"></script>
+    <script src="./manejoDeProyectos.js"></script>
+  </body>
+</html>

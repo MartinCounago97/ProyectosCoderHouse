@@ -1,12 +1,5 @@
 // VARIABLES GLOBALES
-let proyectoId = parseInt(localStorage.getItem("proyectoId")) || 0;
-let proyectos =
-  JSON.parse(localStorage.getItem("proyectos"))?.map((p) => {
-    let proyecto = new Proyecto(p.id, p.nombre, p.descripcion);
-    // Recuperar también casosDePrueba si los tenías
-    proyecto.casosDePrueba = p.casosDePrueba || [];
-    return proyecto;
-  }) || [];
+
 let casoId = parseInt(localStorage.getItem("casoId")) || 0;
 let casosDePrueba =
   JSON.parse(localStorage.getItem("casosDePrueba"))?.map((cp) => {
@@ -15,74 +8,7 @@ let casosDePrueba =
   }) || [];
 let loginActual = null;
 
-let btnLogin = document.getElementById("btnLogin");
-btnLogin.onclick = () => {
-  let usernameInput = document.getElementById("inputUsuario");
-  let passwordInput = document.getElementById("inputPassword");
-
-  let username = usernameInput.value;
-  let password = passwordInput.value;
-  if (login(username, password)) {
-    localStorage.setItem("loginActual", JSON.stringify(loginActual));
-    usernameInput.value = "";
-    passwordInput.value = "";
-    menu();
-  } else {
-    usernameInput.value = "";
-    passwordInput.value = "";
-  }
-};
-
-//btn.addEventListener("click", iniciar);
-/*
-function iniciar() {
-  alert("BIENVENIDO AL SIMULADOR DE GESTIÓN DE PROYECTOS Y CASOS DE PRUEBA");
-
-  if (login()) {
-    localStorage.setItem("loginActual", JSON.stringify(loginActual));
-    menu();
-  } else {
-    alert("No se pudo iniciar sesión. Saliendo del programa.");
-  }
-}*/
-
-function login(username, password) {
-  if (username && password) {
-    return autenticar(username, password);
-  } else {
-    alert("Credenciales incorrectas");
-    return false;
-  }
-}
-
-function autenticar(username, password) {
-  let loginValido = logines.find(
-    (l) => l.username === username && l.password === password
-  );
-  if (loginValido) {
-    alert("BIENVENIDO " + loginValido.getCliente().nombre);
-    loginActual = loginValido;
-    return true;
-  } else {
-    alert("Credenciales incorrectas");
-    return false;
-  }
-}
-
 //FUNCIONES
-function crearProyecto(nombre, descripcion) {
-  if (!nombre || !descripcion) {
-    alert("Nombre y descripción son obligatorios");
-    return;
-  }
-
-  let proyecto = new Proyecto(proyectoId++, nombre, descripcion);
-
-  proyectos.push(proyecto);
-  localStorage.setItem("proyectos", JSON.stringify(proyectos));
-  localStorage.setItem("proyectoId", proyectoId);
-  alert("Proyecto creado correctamente");
-}
 
 function crearCasoDePrueba(nombre, descripcion) {
   if (!nombre || !descripcion) {
@@ -122,18 +48,6 @@ function mostrarResumenProyecto(proyectoId) {
   });
 
   alert(resumen);
-}
-
-function listarProyectos() {
-  if (proyectos.length == 0) {
-    alert("No hay proyectos creados");
-    return;
-  }
-  let listado = "Proyectos:\n";
-  proyectos.forEach((p) => {
-    listado += p.descripcionCompleta() + "\n";
-  });
-  alert(listado);
 }
 
 function listarCasos() {
