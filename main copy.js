@@ -15,23 +15,8 @@ let casosDePrueba =
   }) || [];
 let loginActual = null;
 
-let btnLogin = document.getElementById("btnLogin");
-btnLogin.onclick = () => {
-  let usernameInput = document.getElementById("inputUsuario");
-  let passwordInput = document.getElementById("inputPassword");
-
-  let username = usernameInput.value;
-  let password = passwordInput.value;
-  if (login(username, password)) {
-    localStorage.setItem("loginActual", JSON.stringify(loginActual));
-    usernameInput.value = "";
-    passwordInput.value = "";
-    menu();
-  } else {
-    usernameInput.value = "";
-    passwordInput.value = "";
-  }
-};
+let btn = document.getElementById("btnIniciar");
+btn.onclick = () => alert("Funciona");
 
 //btn.addEventListener("click", iniciar);
 /*
@@ -46,7 +31,9 @@ function iniciar() {
   }
 }*/
 
-function login(username, password) {
+function login() {
+  let username = prompt("Ingrese su nombre de usuario:");
+  let password = prompt("Ingrese su contraseña:");
   if (username && password) {
     return autenticar(username, password);
   } else {
