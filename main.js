@@ -1,26 +1,8 @@
 // VARIABLES GLOBALES
 
-let casoId = parseInt(localStorage.getItem("casoId")) || 0;
-let casosDePrueba =
-  JSON.parse(localStorage.getItem("casosDePrueba"))?.map((cp) => {
-    let casoDePrueba = new CasoDePrueba(cp.id, cp.nombre, cp.descripcion);
-    return casoDePrueba;
-  }) || [];
 let loginActual = null;
 
 //FUNCIONES
-
-function crearCasoDePrueba(nombre, descripcion) {
-  if (!nombre || !descripcion) {
-    alert("Nombre y descripción son obligatorios");
-    return;
-  }
-  let casoDePrueba = new CasoDePrueba(casoId++, nombre, descripcion);
-  casosDePrueba.push(casoDePrueba);
-  localStorage.setItem("casosDePrueba", JSON.stringify(casosDePrueba));
-  localStorage.setItem("casoId", casoId);
-  alert("Caso de prueba creado correctamente");
-}
 
 function asignarCasoAProyecto(casoId, proyectoId) {
   const caso = casosDePrueba.find((c) => c.id === casoId);
@@ -48,18 +30,6 @@ function mostrarResumenProyecto(proyectoId) {
   });
 
   alert(resumen);
-}
-
-function listarCasos() {
-  if (casosDePrueba.length == 0) {
-    alert("No hay casos de prueba creados");
-    return;
-  }
-  let lista = "Casos de pruebas:\n";
-  casosDePrueba.forEach((caso) => {
-    lista += caso.descripcionCompleta() + "\n";
-  });
-  alert(lista);
 }
 
 function menu() {

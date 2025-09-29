@@ -84,3 +84,27 @@ button {
   margin-bottom: 8px;
   font-size: 18px;
 }
+
+/* CASOS DE PRUEBA */
+
+.contenedorCasos {
+  display: flex;
+  height: 100vh;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.caso {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.caso strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
