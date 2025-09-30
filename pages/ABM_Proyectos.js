@@ -1,4 +1,4 @@
-let proyectoId = parseInt(localStorage.getItem("proyectoId")) || 0;
+let proyectoId = parseInt(localStorage.getItem("proyectoId")) || 1;
 let proyectos =
   JSON.parse(localStorage.getItem("proyectos"))?.map((p) => {
     let proyecto = new Proyecto(p.id, p.nombre, p.descripcion);
@@ -6,11 +6,11 @@ let proyectos =
     return proyecto;
   }) || [];
 
-const form = document.getElementById("formProyecto");
-const lista = document.getElementById("listaProyectos");
+const formProyecto = document.getElementById("formProyecto");
+const listaProyecto = document.getElementById("listaProyectos");
 
 function renderizarProyectos() {
-  lista.innerHTML = "";
+  listaProyecto.innerHTML = "";
   proyectos.forEach((p) => {
     const div = document.createElement("div");
     div.classList.add("proyecto");
@@ -26,7 +26,7 @@ function renderizarProyectos() {
     };
 
     div.appendChild(btnVerCasos);
-    lista.prepend(div);
+    listaProyecto.prepend(div);
   });
 }
 
@@ -42,11 +42,11 @@ function crearProyecto(nombre, descripcion) {
   localStorage.setItem("proyectos", JSON.stringify(proyectos));
   localStorage.setItem("proyectoId", proyectoId);
   renderizarProyectos();
-  form.reset();
+  formProyecto.reset();
   alert("Proyecto creado correctamente");
 }
 
-form.addEventListener("submit", (e) => {
+formProyecto.addEventListener("submit", (e) => {
   e.preventDefault();
   const nombre = document.getElementById("nombreProyecto").value;
   const descripcion = document.getElementById("descripcionProyecto").value;

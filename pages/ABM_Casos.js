@@ -1,4 +1,4 @@
-let casoId = parseInt(localStorage.getItem("casoId")) || 0;
+let casoId = parseInt(localStorage.getItem("casoId")) || 1;
 let casosDePrueba =
   JSON.parse(localStorage.getItem("casosDePrueba"))?.map((cp) => {
     let casoDePrueba = new CasoDePrueba(cp.id, cp.nombre, cp.descripcion);
@@ -12,10 +12,31 @@ let lista = document.getElementById("listaCasos");
 
 function renderizarCasos() {
   lista.innerHTML = "";
+
+  // Recuperar proyectos desde localStorage
+  const proyectosCaso = JSON.parse(localStorage.getItem("proyectos")) || [];
+
   casosDePrueba.forEach((c) => {
     const div = document.createElement("div");
     div.classList.add("caso");
-    div.innerHTML = `<strong>${c.nombre}</strong><p>${c.descripcion}</p><p>Estado: ${c.estado}</p>`;
+
+    // Buscar el proyecto asociado
+    let proyectoNombre = "Sin proyecto";
+    if (c.proyectoId != null) {
+      const elProyecto = proyectosCaso.find(
+        (p) => parseInt(p.id) === parseInt(c.proyectoId)
+      );
+      if (elProyecto) {
+        proyectoNombre = elProyecto.nombre;
+      }
+    }
+
+    div.innerHTML = `
+      <strong>${c.nombre}</strong>
+      <p>${c.descripcion}</p>
+      <p>Estado: ${c.estado}</p>
+      <p><em>Proyecto: ${proyectoNombre}</em></p>
+    `;
     lista.prepend(div);
   });
 }

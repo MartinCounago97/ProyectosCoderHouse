@@ -1,20 +1,20 @@
 let proyectos =
   JSON.parse(localStorage.getItem("proyectos"))?.map((p) => {
-    let proyecto = new Proyecto(p.id, p.nombre, p.descripcion);
-    proyecto.casosDePrueba = (p.casosDePrueba || []).map((c) => {
-      let caso = new CasoDePrueba(c.id, c.nombre, c.descripcion);
-      caso.estado = c.estado;
-      caso.proyectoId = c.proyectoId || null;
-      return caso;
+    let proy = new Proyecto(p.id, p.nombre, p.descripcion);
+    proy.casosDePrueba = (p.casosDePrueba || []).map((c) => {
+      let cp = new CasoDePrueba(c.id, c.nombre, c.descripcion);
+      cp.estado = c.estado;
+      cp.proyectoId = c.proyectoId || null;
+      return cp;
     });
-    return proyecto;
+    return proy;
   }) || [];
 
 let casosDePrueba =
   JSON.parse(localStorage.getItem("casosDePrueba"))?.map((c) => {
     let caso = new CasoDePrueba(c.id, c.nombre, c.descripcion);
     caso.estado = c.estado;
-    caso.proyectoId = c.proyectoId || null;
+    caso.proyectoId = c.proyectoId != null ? c.proyectoId : null;
     return caso;
   }) || [];
 
