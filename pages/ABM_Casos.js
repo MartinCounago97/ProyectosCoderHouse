@@ -2,6 +2,8 @@ let casoId = parseInt(localStorage.getItem("casoId")) || 0;
 let casosDePrueba =
   JSON.parse(localStorage.getItem("casosDePrueba"))?.map((cp) => {
     let casoDePrueba = new CasoDePrueba(cp.id, cp.nombre, cp.descripcion);
+    casoDePrueba.estado = cp.estado;
+    casoDePrueba.proyectoId = cp.proyectoId || null;
     return casoDePrueba;
   }) || [];
 

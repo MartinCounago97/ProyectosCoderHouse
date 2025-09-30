@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../estilos.css" />
-    <title>Casos de prueba</title>
+    <title>Asignar casos a proyectos</title>
   </head>
   <body>
     <div class="header">
@@ -18,35 +18,34 @@
         <a href="../index.html">Cerrar sesión</a>
       </nav>
     </div>
-    <div class="contenedorCasos">
-      <div class="formulario">
-        <h2>Crear caso de pruebas</h2>
-        <form id="formCaso">
-          <input
-            type="text"
-            id="nombreCaso"
-            placeholder="Nombre del caso de prueba"
-          />
+    <div class="contenedorAsignarCasos">
+      <div class="formularioCasos">
+        <h2>Asignar caso de prueba a proyecto</h2>
+        <form id="formAsignarCaso">
+          <label for="selectProyecto">Seleccionar Proyecto:</label><br />
+          <select id="selectProyecto" required>
+            <option value="" disabled selected>Seleccione un proyecto</option>
+          </select>
           <br /><br />
-          <textarea
-            id="descripcionCaso"
-            placeholder="Descripción del caso de prueba"
-          ></textarea>
+          <label for="selectCaso">Seleccionar Caso de Prueba:</label><br />
+          <select id="selectCaso" required>
+            <option value="" disabled selected>
+              Seleccione un caso de prueba
+            </option>
+          </select>
           <br /><br />
-          <button id="btnAltaCaso">Crear Caso de Prueba</button>
-          <br /><br />
+          <button id="btnAsignarCaso" type="submit">
+            Asignar Caso al Proyecto
+          </button>
         </form>
         <a href="inicio.html" class="btnVolver">← Volver a inicio</a>
       </div>
-      <div class="listado">
-        <h2>Casos de prueba creados</h2>
-        <div id="listaCasos"></div>
-      </div>
     </div>
 
+    <script src="../clases/Proyecto.js"></script>
     <script src="../clases/CasoDePrueba.js"></script>
     <script src="../clases/Colecciones.js"></script>
     <script src="../main.js"></script>
-    <script src="./ABM_Casos.js"></script>
+    <script src="casoAproyecto.js"></script>
   </body>
 </html>

@@ -5,6 +5,38 @@ body {
   text-align: center;
 }
 
+/*Login*/
+.login {
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 300px;
+}
+.login input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+/*Inicio*/
+.header {
+  background-color: #007bff;
+  color: white;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+.header nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+}
+.header nav a:hover {
+  text-decoration: underline;
+}
+
 /* Proyectos*/
 .contenedorProyectos {
   display: flex;
@@ -107,4 +139,24 @@ button {
   display: block;
   margin-bottom: 8px;
   font-size: 18px;
+}
+
+/*Asignar casos a proyectos*/
+.contenedorAsignarCasos {
+  display: flex;
+  height: 100vh;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+}
+
+.formularioCasos {
+  width: 400px;
+  text-align: left;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
 }

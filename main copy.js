@@ -1,23 +1,3 @@
-// VARIABLES GLOBALES
-let proyectoId = parseInt(localStorage.getItem("proyectoId")) || 0;
-let proyectos =
-  JSON.parse(localStorage.getItem("proyectos"))?.map((p) => {
-    let proyecto = new Proyecto(p.id, p.nombre, p.descripcion);
-    // Recuperar también casosDePrueba si los tenías
-    proyecto.casosDePrueba = p.casosDePrueba || [];
-    return proyecto;
-  }) || [];
-let casoId = parseInt(localStorage.getItem("casoId")) || 0;
-let casosDePrueba =
-  JSON.parse(localStorage.getItem("casosDePrueba"))?.map((cp) => {
-    let casoDePrueba = new CasoDePrueba(cp.id, cp.nombre, cp.descripcion);
-    return casoDePrueba;
-  }) || [];
-let loginActual = null;
-
-let btn = document.getElementById("btnIniciar");
-btn.onclick = () => alert("Funciona");
-
 //btn.addEventListener("click", iniciar);
 /*
 function iniciar() {

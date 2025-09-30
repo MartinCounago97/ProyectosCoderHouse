@@ -9,7 +9,7 @@ function ejecutarLogin() {
     localStorage.setItem("loginActual", JSON.stringify(loginActual));
     usernameInput.value = "";
     passwordInput.value = "";
-    menu();
+    window.location.href = "pages/inicio.html";
   } else {
     usernameInput.value = "";
     passwordInput.value = "";
