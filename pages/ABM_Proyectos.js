@@ -14,7 +14,18 @@ function renderizarProyectos() {
   proyectos.forEach((p) => {
     const div = document.createElement("div");
     div.classList.add("proyecto");
-    div.innerHTML = `<strong>${p.nombre}</strong><p>${p.descripcion}</p>`;
+
+    div.innerHTML = `
+      <strong>${p.nombre}</strong>
+      <p>${p.descripcion}</p>
+    `;
+    const btnVerCasos = document.createElement("button");
+    btnVerCasos.textContent = "Ver casos";
+    btnVerCasos.onclick = () => {
+      mostrarCasosDeProyecto(p);
+    };
+
+    div.appendChild(btnVerCasos);
     lista.prepend(div);
   });
 }
@@ -41,5 +52,20 @@ form.addEventListener("submit", (e) => {
   const descripcion = document.getElementById("descripcionProyecto").value;
   crearProyecto(nombre, descripcion);
 });
+
+function mostrarCasosDeProyecto(proyecto) {
+  if (!proyecto.casosDePrueba || proyecto.casosDePrueba.length === 0) {
+    alert(`El proyecto "${proyecto.nombre}" no tiene casos de prueba.`);
+    return;
+  }
+
+  let casosTexto = proyecto.casosDePrueba
+    .map(
+      (c, i) => `${i + 1}. ${c.nombre || "Sin nombre"} - ${c.descripcion || ""}`
+    )
+    .join("\n");
+
+  alert(`Casos de prueba del proyecto "${proyecto.nombre}":\n\n${casosTexto}`);
+}
 
 renderizarProyectos();
