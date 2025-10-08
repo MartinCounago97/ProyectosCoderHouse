@@ -32,7 +32,12 @@ function renderizarProyectos() {
 
 function crearProyecto(nombre, descripcion) {
   if (!nombre || !descripcion) {
-    alert("Nombre y descripción son obligatorios");
+    Swal.fire({
+      icon: "warning",
+      title: "Campos incompletos",
+      text: "Nombre y descripción son obligatorios",
+      confirmButtonColor: "#3085d6",
+    });
     return;
   }
 
@@ -43,7 +48,14 @@ function crearProyecto(nombre, descripcion) {
   localStorage.setItem("proyectoId", proyectoId);
   renderizarProyectos();
   formProyecto.reset();
-  alert("Proyecto creado correctamente");
+
+  Swal.fire({
+    icon: "success",
+    title: "Proyecto creado",
+    text: "El proyecto se creó correctamente",
+    timer: 2000,
+    showConfirmButton: false,
+  });
 }
 
 formProyecto.addEventListener("submit", (e) => {
@@ -55,7 +67,12 @@ formProyecto.addEventListener("submit", (e) => {
 
 function mostrarCasosDeProyecto(proyecto) {
   if (!proyecto.casosDePrueba || proyecto.casosDePrueba.length === 0) {
-    alert(`El proyecto "${proyecto.nombre}" no tiene casos de prueba.`);
+    Swal.fire({
+      icon: "info",
+      title: "Sin casos de prueba",
+      text: `El proyecto "${proyecto.nombre}" no tiene casos de prueba.`,
+      confirmButtonColor: "#3085d6",
+    });
     return;
   }
 
@@ -63,9 +80,16 @@ function mostrarCasosDeProyecto(proyecto) {
     .map(
       (c, i) => `${i + 1}. ${c.nombre || "Sin nombre"} - ${c.descripcion || ""}`
     )
-    .join("\n");
+    .join("<br>");
 
-  alert(`Casos de prueba del proyecto "${proyecto.nombre}":\n\n${casosTexto}`);
+  Swal.fire({
+    title: `Casos de prueba del proyecto "${proyecto.nombre}"`,
+    html: `<div style="text-align: left">${casosTexto}</div>`,
+    icon: "info",
+    confirmButtonText: "Cerrar",
+    confirmButtonColor: "#3085d6",
+    width: 600,
+  });
 }
 
 renderizarProyectos();
