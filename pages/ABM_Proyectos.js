@@ -1,7 +1,6 @@
 let proyectoId = parseInt(localStorage.getItem("proyectoId")) || 1;
 let proyectos = [];
 
-// 🔹 Cargar proyectos desde localStorage (si existen)
 const proyectosLocal =
   JSON.parse(localStorage.getItem("proyectos"))?.map((p) => {
     let proyecto = new Proyecto(p.id, p.nombre, p.descripcion);
@@ -9,22 +8,23 @@ const proyectosLocal =
     return proyecto;
   }) || [];
 
-// 🔹 Cargar casos desde localStorage (si existen)
 const casosLocal = JSON.parse(localStorage.getItem("casosDePrueba")) || [];
 
-// 🔹 Intentar cargar desde JSON externo
 fetch("../data/data.json")
   .then((response) => response.json())
   .then((data) => {
     const proyectosJSON = data.proyectos || [];
     const casosJSON = data.casosDePrueba || [];
 
-    // 🔹 Unificar proyectos (prioriza los de localStorage)
-    const proyectosFinales =
-      proyectosLocal.length > 0 ? proyectosLocal : proyectosJSON;
+    // 🔹 Función para fusionar sin duplicar
+    const fusionar = (local, json, clave) => {
+      const clavesLocales = local.map((e) => e[clave]);
+      const nuevos = json.filter((e) => !clavesLocales.includes(e[clave]));
+      return [...local, ...nuevos];
+    };
 
-    // 🔹 Vincular casos (localStorage tiene prioridad, sino JSON)
-    const casosFinales = casosLocal.length > 0 ? casosLocal : casosJSON;
+    const proyectosFinales = fusionar(proyectosLocal, proyectosJSON, "id");
+    const casosFinales = fusionar(casosLocal, casosJSON, "id");
 
     proyectos = proyectosFinales.map((p) => {
       let proyecto = new Proyecto(p.id, p.nombre, p.descripcion);
@@ -48,10 +48,11 @@ fetch("../data/data.json")
 
 const formProyecto = document.getElementById("formProyecto");
 const listaProyecto = document.getElementById("listaProyectos");
+const filtroProyecto = document.getElementById("filtroProyecto");
 
-function renderizarProyectos() {
+function renderizarProyectos(listaProyectosRender = proyectos) {
   listaProyecto.innerHTML = "";
-  proyectos.forEach((p) => {
+  listaProyectosRender.forEach((p) => {
     const div = document.createElement("div");
     div.classList.add("proyecto");
 
@@ -130,3 +131,19 @@ function mostrarCasosDeProyecto(proyecto) {
     width: 600,
   });
 }
+
+// ==== FILTRO DE PROYECTOS ====
+filtroProyecto.addEventListener("input", () => {
+  const texto = filtroProyecto.value.toLowerCase();
+  let proyectosFiltrados;
+
+  if (texto.length >= 2) {
+    proyectosFiltrados = proyectos.filter((p) =>
+      p.nombre.toLowerCase().includes(texto)
+    );
+  } else {
+    proyectosFiltrados = proyectos;
+  }
+
+  renderizarProyectos(proyectosFiltrados);
+});

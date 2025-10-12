@@ -1,18 +1,15 @@
 // ==== INICIALIZACIÓN DE DATOS ====
 async function inicializarDatos() {
   try {
-    // Leer datos locales
     const datosLocales = {
       usuarios: JSON.parse(localStorage.getItem("usuarios")) || [],
       proyectos: JSON.parse(localStorage.getItem("proyectos")) || [],
       casosDePrueba: JSON.parse(localStorage.getItem("casosDePrueba")) || [],
     };
 
-    // Cargar datos del JSON
     const response = await fetch("../data/data.json");
     const datosJson = await response.json();
 
-    // ---- Fusionar sin duplicar ----
     const fusionar = (local, json, clave) => {
       const clavesLocales = local.map((e) => e[clave]);
       const nuevos = json.filter((e) => !clavesLocales.includes(e[clave]));
@@ -35,12 +32,10 @@ async function inicializarDatos() {
       "id"
     );
 
-    // Guardar en localStorage
     localStorage.setItem("usuarios", JSON.stringify(usuariosFusionados));
     localStorage.setItem("proyectos", JSON.stringify(proyectosFusionados));
     localStorage.setItem("casosDePrueba", JSON.stringify(casosFusionados));
 
-    // Actualizar contador de ID
     const maxId = Math.max(...casosFusionados.map((cp) => cp.id), 0);
     localStorage.setItem("casoId", maxId + 1);
   } catch (error) {
@@ -58,34 +53,32 @@ inicializarDatos().then(() => {
   let casoId = parseInt(localStorage.getItem("casoId")) || 1;
   let casosDePrueba =
     JSON.parse(localStorage.getItem("casosDePrueba"))?.map((cp) => {
-      let casoDePrueba = new CasoDePrueba(cp.id, cp.nombre, cp.descripcion);
-      casoDePrueba.estado = cp.estado;
-      casoDePrueba.proyectoId = cp.proyectoId || null;
-      return casoDePrueba;
+      let caso = new CasoDePrueba(cp.id, cp.nombre, cp.descripcion);
+      caso.estado = cp.estado;
+      caso.proyectoId = cp.proyectoId || null;
+      return caso;
     }) || [];
 
   let form = document.getElementById("formCaso");
   let lista = document.getElementById("listaCasos");
+  const filtroCasoInput = document.getElementById("filtroCaso");
 
   // ==== RENDERIZAR CASOS ====
-  function renderizarCasos() {
+  function renderizarCasos(casos = casosDePrueba) {
     lista.innerHTML = "";
 
     const proyectosCaso = JSON.parse(localStorage.getItem("proyectos")) || [];
 
-    casosDePrueba.forEach((c) => {
+    casos.forEach((c) => {
       const div = document.createElement("div");
       div.classList.add("caso");
 
-      // Buscar proyecto asociado
       let proyectoNombre = "Sin proyecto";
       if (c.proyectoId != null) {
         const elProyecto = proyectosCaso.find(
           (p) => parseInt(p.id) === parseInt(c.proyectoId)
         );
-        if (elProyecto) {
-          proyectoNombre = elProyecto.nombre;
-        }
+        if (elProyecto) proyectoNombre = elProyecto.nombre;
       }
 
       div.innerHTML = `
@@ -110,8 +103,8 @@ inicializarDatos().then(() => {
       return;
     }
 
-    let casoDePrueba = new CasoDePrueba(casoId++, nombre, descripcion);
-    casosDePrueba.push(casoDePrueba);
+    let caso = new CasoDePrueba(casoId++, nombre, descripcion);
+    casosDePrueba.push(caso);
 
     localStorage.setItem("casosDePrueba", JSON.stringify(casosDePrueba));
     localStorage.setItem("casoId", casoId);
@@ -126,6 +119,22 @@ inicializarDatos().then(() => {
     });
   }
 
+  // ==== FILTRO AUTOMÁTICO ====
+  filtroCasoInput.addEventListener("input", () => {
+    const texto = filtroCasoInput.value.toLowerCase();
+    let casosFiltrados;
+
+    if (texto.length >= 2) {
+      casosFiltrados = casosDePrueba.filter((c) =>
+        c.nombre.toLowerCase().includes(texto)
+      );
+    } else {
+      casosFiltrados = casosDePrueba;
+    }
+
+    renderizarCasos(casosFiltrados);
+  });
+
   // ==== EVENTO DE FORMULARIO ====
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -135,23 +144,4 @@ inicializarDatos().then(() => {
   });
 
   renderizarCasos();
-});
-
-// ==== OPCIONAL: REINICIAR DATOS ====
-document.getElementById("resetDatos")?.addEventListener("click", () => {
-  Swal.fire({
-    title: "¿Reiniciar datos?",
-    text: "Se borrarán todos los datos locales y se recargarán desde el JSON.",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Sí, reiniciar",
-    cancelButtonText: "Cancelar",
-    confirmButtonColor: "#d33",
-    cancelButtonColor: "#3085d6",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      localStorage.clear();
-      inicializarDatos().then(() => location.reload());
-    }
-  });
 });
