@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <link rel="stylesheet" href="../estilos.css" />
     <title>Asignar casos a proyectos</title>
   </head>
@@ -21,12 +26,10 @@
       <div class="formularioCasos">
         <h2>Asignar caso de prueba a proyecto</h2>
         <form id="formAsignarCaso">
-          <label for="selectProyecto">Seleccionar Proyecto:</label><br />
           <select id="selectProyecto" required>
             <option value="" disabled selected>Seleccione un proyecto</option>
           </select>
           <br /><br />
-          <label for="selectCaso">Seleccionar Caso de Prueba:</label><br />
           <select id="selectCaso" required>
             <option value="" disabled selected>
               Seleccione un caso de prueba
@@ -41,6 +44,10 @@
       </div>
     </div>
 
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
     <script src="../clases/Colecciones.js"></script>
     <script src="../clases/Proyecto.js"></script>
     <script src="../clases/CasoDePrueba.js"></script>

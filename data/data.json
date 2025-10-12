@@ -1,0 +1,99 @@
+{
+  "usuarios": [
+    {
+      "username": "mcuonago",
+      "nombre": "Martín Couñago",
+      "email": "martin.counago@resonet.com.uy"
+    },
+    {
+      "username": "lvaldez",
+      "nombre": "Luis Valdez",
+      "email": "luis.valdez@resonet.com.uy"
+    },
+    {
+      "username": "nrodriguez",
+      "nombre": "Nelsy Rodríguez",
+      "email": "nelsy.rodriguez@resonet.com.uy"
+    }
+  ],
+
+  "proyectos": [
+    {
+      "id": 1,
+      "nombre": "CFG OCA",
+      "descripcion": "Configurador web para terminales POS del sistema OCA",
+      "casosDePrueba": [1, 2, 3]
+    },
+    {
+      "id": 2,
+      "nombre": "POSLINK",
+      "descripcion": "Integración de terminales POS con el sistema de cobros remoto",
+      "casosDePrueba": [4, 5]
+    },
+    {
+      "id": 3,
+      "nombre": "ORQUESTA",
+      "descripcion": "Sistema de gestión centralizada de descargas y monitoreo de POS",
+      "casosDePrueba": [6, 7, 8]
+    }
+  ],
+
+  "casosDePrueba": [
+    {
+      "id": 1,
+      "nombre": "Validar login de usuario",
+      "descripcion": "Verificar que un usuario pueda iniciar sesión correctamente con credenciales válidas.",
+      "estado": "Completado",
+      "proyectoId": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Error de login con credenciales inválidas",
+      "descripcion": "Probar que se muestre un mensaje de error al ingresar credenciales incorrectas.",
+      "estado": "Pendiente",
+      "proyectoId": 1
+    },
+    {
+      "id": 3,
+      "nombre": "Guardar configuración de terminal",
+      "descripcion": "Comprobar que se puedan guardar los parámetros configurados en el POS.",
+      "estado": "En progreso",
+      "proyectoId": 1
+    },
+    {
+      "id": 4,
+      "nombre": "Procesar transacción exitosa",
+      "descripcion": "Validar que una transacción con tarjeta aprobada se procese correctamente.",
+      "estado": "Completado",
+      "proyectoId": 2
+    },
+    {
+      "id": 5,
+      "nombre": "Manejo de error de conexión",
+      "descripcion": "Verificar que el sistema muestre un error si el POS no tiene conexión a internet.",
+      "estado": "Pendiente",
+      "proyectoId": 2
+    },
+    {
+      "id": 6,
+      "nombre": "Visualizar listado de terminales",
+      "descripcion": "Asegurar que se muestren correctamente todos los POS activos en la interfaz.",
+      "estado": "Completado",
+      "proyectoId": 3
+    },
+    {
+      "id": 7,
+      "nombre": "Filtrar por estado de terminal",
+      "descripcion": "Probar que el filtro por estado (activo, inactivo) funcione correctamente.",
+      "estado": "En progreso",
+      "proyectoId": 3
+    },
+    {
+      "id": 8,
+      "nombre": "Descarga masiva de apps",
+      "descripcion": "Validar que la descarga masiva de aplicaciones en POS se ejecute correctamente.",
+      "estado": "Pendiente",
+      "proyectoId": 3
+    }
+  ]
+}

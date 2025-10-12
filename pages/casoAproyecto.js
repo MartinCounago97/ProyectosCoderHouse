@@ -55,10 +55,25 @@ function asignarCasoAProyecto(casoId, proyectoId) {
     localStorage.setItem("proyectos", JSON.stringify(proyectos));
     localStorage.setItem("casosDePrueba", JSON.stringify(casosDePrueba));
     formulario.reset();
-    alert("Caso asignado al proyecto correctamente");
+    Toastify({
+      text: `Caso "${caso.nombre}" asignado a proyecto "${proyecto.nombre}"`,
+      duration: 3000,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+      stopOnFocus: true,
+    }).showToast();
     listarCasos();
   } else {
-    alert("Caso o proyecto no encontrado");
+    Swal.fire({
+      icon: "warning",
+      title: "No se pudo asignar",
+      text: "Seleccione un proyecto y un caso de prueba válidos",
+      timer: 2000,
+      showConfirmButton: false,
+      confirmButtonColor: "#3085d6",
+    });
     formulario.reset();
   }
 }

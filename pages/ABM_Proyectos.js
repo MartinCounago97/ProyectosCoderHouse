@@ -1,10 +1,50 @@
 let proyectoId = parseInt(localStorage.getItem("proyectoId")) || 1;
-let proyectos =
+let proyectos = [];
+
+// 🔹 Cargar proyectos desde localStorage (si existen)
+const proyectosLocal =
   JSON.parse(localStorage.getItem("proyectos"))?.map((p) => {
     let proyecto = new Proyecto(p.id, p.nombre, p.descripcion);
     proyecto.casosDePrueba = p.casosDePrueba || [];
     return proyecto;
   }) || [];
+
+// 🔹 Cargar casos desde localStorage (si existen)
+const casosLocal = JSON.parse(localStorage.getItem("casosDePrueba")) || [];
+
+// 🔹 Intentar cargar desde JSON externo
+fetch("../data/data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    const proyectosJSON = data.proyectos || [];
+    const casosJSON = data.casosDePrueba || [];
+
+    // 🔹 Unificar proyectos (prioriza los de localStorage)
+    const proyectosFinales =
+      proyectosLocal.length > 0 ? proyectosLocal : proyectosJSON;
+
+    // 🔹 Vincular casos (localStorage tiene prioridad, sino JSON)
+    const casosFinales = casosLocal.length > 0 ? casosLocal : casosJSON;
+
+    proyectos = proyectosFinales.map((p) => {
+      let proyecto = new Proyecto(p.id, p.nombre, p.descripcion);
+      proyecto.casosDePrueba = casosFinales.filter(
+        (c) => parseInt(c.proyectoId) === parseInt(p.id)
+      );
+      return proyecto;
+    });
+
+    renderizarProyectos();
+  })
+  .catch((error) => {
+    Swal.fire({
+      icon: "error",
+      title: "Error al cargar datos",
+      text: "No se pudieron cargar los datos del archivo JSON.",
+      confirmButtonColor: "#3085d6",
+    });
+    console.error(error);
+  });
 
 const formProyecto = document.getElementById("formProyecto");
 const listaProyecto = document.getElementById("listaProyectos");
@@ -19,6 +59,7 @@ function renderizarProyectos() {
       <strong>${p.nombre}</strong>
       <p>${p.descripcion}</p>
     `;
+
     const btnVerCasos = document.createElement("button");
     btnVerCasos.textContent = "Ver casos";
     btnVerCasos.onclick = () => {
@@ -77,9 +118,7 @@ function mostrarCasosDeProyecto(proyecto) {
   }
 
   let casosTexto = proyecto.casosDePrueba
-    .map(
-      (c, i) => `${i + 1}. ${c.nombre || "Sin nombre"} - ${c.descripcion || ""}`
-    )
+    .map((c, i) => `${i + 1}. ${c.nombre || "Sin nombre"} - ${c.estado || ""}`)
     .join("<br>");
 
   Swal.fire({
@@ -91,5 +130,3 @@ function mostrarCasosDeProyecto(proyecto) {
     width: 600,
   });
 }
-
-renderizarProyectos();
