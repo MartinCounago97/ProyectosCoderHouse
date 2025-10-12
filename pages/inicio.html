@@ -4,7 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../estilos.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
     <title>Inicio</title>
+
+    <style>
+      /* Espacio entre icono y texto */
+      .accionesInicio button i {
+        margin-right: 6px;
+      }
+    </style>
   </head>
   <body>
     <div class="header">
@@ -29,17 +43,24 @@
 
       <div class="accionesInicio">
         <button onclick="location.href='proyectos.html'">
-          ➕ Nuevo Proyecto
+          <i class="fa-solid fa-plus"></i> Nuevo Proyecto
         </button>
+
         <button onclick="location.href='casos.html'">
-          🧪 Nuevo Caso de Prueba
+          <i class="fa-solid fa-plus"></i> Nuevo Caso de Prueba
         </button>
+
         <button onclick="location.href='asignarCasos.html'">
-          🔗 Asignar Casos
+          <i class="fa-solid fa-link"></i> Asignar Casos
+        </button>
+
+        <button id="casosSinAsignarBtn">
+          <i class="fa-solid fa-list"></i> Casos sin asignar
         </button>
       </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="ABM_Casos.js"></script>
   </body>
 </html>

@@ -48,6 +48,12 @@ async function inicializarDatos() {
   }
 }
 
+// ==== VARIABLES ====
+let form = document.getElementById("formCaso");
+let lista = document.getElementById("listaCasos");
+const filtroCasoInput = document.getElementById("filtroCaso");
+const btnCasosSinAsignar = document.getElementById("casosSinAsignarBtn");
+
 // ==== FLUJO PRINCIPAL ====
 inicializarDatos().then(() => {
   let casoId = parseInt(localStorage.getItem("casoId")) || 1;
@@ -58,10 +64,6 @@ inicializarDatos().then(() => {
       caso.proyectoId = cp.proyectoId || null;
       return caso;
     }) || [];
-
-  let form = document.getElementById("formCaso");
-  let lista = document.getElementById("listaCasos");
-  const filtroCasoInput = document.getElementById("filtroCaso");
 
   // ==== RENDERIZAR CASOS ====
   function renderizarCasos(casos = casosDePrueba) {
@@ -144,4 +146,35 @@ inicializarDatos().then(() => {
   });
 
   renderizarCasos();
+});
+
+// ==== BOTÓN CASOS SIN ASIGNAR ====
+btnCasosSinAsignar.addEventListener("click", () => {
+  const casosSinAsignar =
+    JSON.parse(localStorage.getItem("casosDePrueba")) || [];
+  const casosPendientes = casosSinAsignar.filter(
+    (c) => c.estado === "Pendiente"
+  );
+
+  if (casosPendientes.length === 0) {
+    Swal.fire({
+      icon: "info",
+      title: "No hay casos sin asignar",
+      text: "Todos los casos de prueba están asignados a proyectos.",
+      confirmButtonColor: "#3085d6",
+    });
+    return;
+  }
+
+  // Armar el listado en HTML
+  const listado = casosPendientes
+    .map((caso) => `<li><strong>${caso.nombre}</strong> (ID: ${caso.id})</li>`)
+    .join("");
+
+  Swal.fire({
+    title: "Casos sin asignar",
+    html: `<ul style="text-align:left;">${listado}</ul>`,
+    icon: "warning",
+    confirmButtonText: "Cerrar",
+  });
 });
