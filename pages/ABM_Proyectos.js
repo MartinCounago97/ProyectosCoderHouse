@@ -214,8 +214,11 @@ function mostrarCasosDeProyecto(proyecto, elEstado) {
       casosFiltrados.forEach((c) => {
         const nuevoEstado = document.getElementById(`estado-${c.id}`).value;
         if (nuevoEstado && nuevoEstado !== c.estado) {
+          if (nuevoEstado === "Pendiente") {
+            // Quitar del proyecto si pasa a Pendiente
+            c.proyectoId = null;
+          }
           c.estado = nuevoEstado;
-          c.proyectoId = null;
           cambios++;
         }
       });
