@@ -1,9 +1,16 @@
 class CasoDePrueba {
+  static ESTADOS = {
+    PENDIENTE: "Pendiente",
+    ASIGNADO: "Asignado",
+    COMPLETADO: "Completado",
+    FALLIDO: "Fallido",
+  };
+
   constructor(id, nombre, descripcion) {
     this.id = id;
     this.nombre = nombre;
     this.descripcion = descripcion;
-    this.estado = "Pendiente";
+    this.estado = CasoDePrueba.ESTADOS.PENDIENTE;
     this.proyectoId = null;
   }
 
@@ -40,6 +47,14 @@ class CasoDePrueba {
   }
 
   setEstado(nuevoEstado) {
+    const estadosValidos = Object.values(CasoDePrueba.ESTADOS);
+    if (!estadosValidos.includes(nuevoEstado)) {
+      throw new Error(
+        `Estado inválido: "${nuevoEstado}". Estados permitidos: ${estadosValidos.join(
+          ", "
+        )}`
+      );
+    }
     this.estado = nuevoEstado;
   }
 

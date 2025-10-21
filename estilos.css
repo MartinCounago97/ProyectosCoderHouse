@@ -135,6 +135,7 @@ body {
 
 button {
   padding: 12px 20px;
+  margin-right: 20px;
   background-color: #28a745;
   color: white;
   border: none;

@@ -62,12 +62,28 @@ function renderizarProyectos(listaProyectosRender = proyectos) {
     `;
 
     const btnVerCasos = document.createElement("button");
-    btnVerCasos.textContent = "Ver casos";
+    btnVerCasos.textContent = "Ver casos asignados";
     btnVerCasos.onclick = () => {
-      mostrarCasosDeProyecto(p);
+      mostrarCasosDeProyecto(p, "Asignado");
     };
 
     div.appendChild(btnVerCasos);
+
+    const btnVerCasosCompletados = document.createElement("button");
+    btnVerCasosCompletados.textContent = "Ver casos completados";
+    btnVerCasosCompletados.onclick = () => {
+      mostrarCasosDeProyecto(p, "Completado");
+    };
+
+    div.appendChild(btnVerCasosCompletados);
+
+    const btnVerCasosFallidos = document.createElement("button");
+    btnVerCasosFallidos.textContent = "Ver casos fallidos";
+    btnVerCasosFallidos.onclick = () => {
+      mostrarCasosDeProyecto(p, "Fallido");
+    };
+
+    div.appendChild(btnVerCasosFallidos);
     listaProyecto.prepend(div);
   });
 }
@@ -107,7 +123,7 @@ formProyecto.addEventListener("submit", (e) => {
   crearProyecto(nombre, descripcion);
 });
 
-function mostrarCasosDeProyecto(proyecto) {
+function mostrarCasosDeProyecto(proyecto, elEstado) {
   if (!proyecto.casosDePrueba || proyecto.casosDePrueba.length === 0) {
     Swal.fire({
       icon: "info",
@@ -118,12 +134,31 @@ function mostrarCasosDeProyecto(proyecto) {
     return;
   }
 
-  let casosTexto = proyecto.casosDePrueba
-    .map((c, i) => `${i + 1}. ${c.nombre || "Sin nombre"} - ${c.estado || ""}`)
+  // Filtrar los casos por estado
+  const casosFiltrados = proyecto.casosDePrueba.filter(
+    (c) => c.estado === elEstado
+  );
+
+  if (casosFiltrados.length === 0) {
+    Swal.fire({
+      icon: "info",
+      title: "Sin casos en ese estado",
+      text: `El proyecto "${proyecto.nombre}" no tiene casos con estado "${elEstado}".`,
+      confirmButtonColor: "#3085d6",
+    });
+    return;
+  }
+
+  // Mapear correctamente a texto
+  const casosTexto = casosFiltrados
+    .map(
+      (c, i) =>
+        `${i + 1}. ${c.nombre || "Sin nombre"} - ${c.estado || "Sin estado"}`
+    )
     .join("<br>");
 
   Swal.fire({
-    title: `Casos de prueba del proyecto "${proyecto.nombre}"`,
+    title: `Casos de prueba (${elEstado}) del proyecto "${proyecto.nombre}"`,
     html: `<div style="text-align: left">${casosTexto}</div>`,
     icon: "info",
     confirmButtonText: "Cerrar",
