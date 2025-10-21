@@ -10,6 +10,38 @@ const proyectosLocal =
 
 const casosLocal = JSON.parse(localStorage.getItem("casosDePrueba")) || [];
 
+function actualizarEstadoCaso(idCaso, nuevoEstado) {
+  let casos = JSON.parse(localStorage.getItem("casosDePrueba")) || [];
+  let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+
+  const caso = casos.find((c) => parseInt(c.id) === parseInt(idCaso));
+  if (!caso) return;
+
+  // Actualizar el estado
+  caso.estado = nuevoEstado;
+
+  // Si el nuevo estado es "Pendiente", eliminar relación con proyecto
+  if (nuevoEstado === "Pendiente") {
+    caso.proyectoId = null;
+
+    // También quitarlo del array de casos del proyecto, si existiera
+    proyectos.forEach((p) => {
+      if (p.casosDePrueba) {
+        p.casosDePrueba = p.casosDePrueba.filter(
+          (cp) => parseInt(cp.id) !== parseInt(caso.id)
+        );
+      }
+    });
+  }
+
+  // Guardar todo nuevamente
+  localStorage.setItem("casosDePrueba", JSON.stringify(casos));
+  localStorage.setItem("proyectos", JSON.stringify(proyectos));
+
+  // Refrescar vista si aplica
+  renderizarCasos();
+}
+
 fetch("../data/data.json")
   .then((response) => response.json())
   .then((data) => {
@@ -149,21 +181,72 @@ function mostrarCasosDeProyecto(proyecto, elEstado) {
     return;
   }
 
-  // Mapear correctamente a texto
-  const casosTexto = casosFiltrados
+  // Listado de casos con posibilidad de modificar su estado
+  const casosHTML = casosFiltrados
     .map(
-      (c, i) =>
-        `${i + 1}. ${c.nombre || "Sin nombre"} - ${c.estado || "Sin estado"}`
+      (c, i) => `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span>${i + 1}. <strong>${c.nombre}</strong> - ${c.estado}</span>
+          <select id="estado-${c.id}" style="padding: 4px; border-radius: 6px;">
+            <option value="">Cambiar estado...</option>
+            <option value="Asignado">Asignado</option>
+            <option value="Completado">Completado</option>
+            <option value="Fallido">Fallido</option>
+            <option value="Pendiente">Pendiente</option>
+          </select>
+        </div>
+      `
     )
-    .join("<br>");
+    .join("");
 
   Swal.fire({
     title: `Casos de prueba (${elEstado}) del proyecto "${proyecto.nombre}"`,
-    html: `<div style="text-align: left">${casosTexto}</div>`,
+    html: `<div style="text-align: left">${casosHTML}</div>`,
     icon: "info",
-    confirmButtonText: "Cerrar",
+    confirmButtonText: "Guardar cambios",
+    showCancelButton: true,
+    cancelButtonText: "Cancelar",
     confirmButtonColor: "#3085d6",
     width: 600,
+    preConfirm: () => {
+      // Recorrer los selects para ver si hubo cambios
+      let cambios = 0;
+      casosFiltrados.forEach((c) => {
+        const nuevoEstado = document.getElementById(`estado-${c.id}`).value;
+        if (nuevoEstado && nuevoEstado !== c.estado) {
+          c.estado = nuevoEstado;
+          c.proyectoId = null;
+          cambios++;
+        }
+      });
+
+      if (cambios > 0) {
+        // Guardar cambios en localStorage
+        localStorage.setItem("proyectos", JSON.stringify(proyectos));
+        const todosCasos = proyectos.flatMap((p) => p.casosDePrueba);
+        localStorage.setItem("casosDePrueba", JSON.stringify(todosCasos));
+      }
+
+      return cambios;
+    },
+  }).then((result) => {
+    if (result.isConfirmed && result.value > 0) {
+      Swal.fire({
+        icon: "success",
+        title: "Cambios guardados",
+        text: `${result.value} caso(s) actualizado(s) correctamente.`,
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    } else if (result.isConfirmed) {
+      Swal.fire({
+        icon: "info",
+        title: "Sin cambios",
+        text: "No se modificó ningún estado.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    }
   });
 }
 

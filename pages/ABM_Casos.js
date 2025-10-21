@@ -48,6 +48,38 @@ async function inicializarDatos() {
   }
 }
 
+function actualizarEstadoCaso(idCaso, nuevoEstado) {
+  let casos = JSON.parse(localStorage.getItem("casosDePrueba")) || [];
+  let proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+
+  const caso = casos.find((c) => parseInt(c.id) === parseInt(idCaso));
+  if (!caso) return;
+
+  // Actualizar el estado
+  caso.estado = nuevoEstado;
+
+  // Si el nuevo estado es "Pendiente", eliminar relación con proyecto
+  if (nuevoEstado === "Pendiente") {
+    caso.proyectoId = null;
+
+    // También quitarlo del array de casos del proyecto, si existiera
+    proyectos.forEach((p) => {
+      if (p.casosDePrueba) {
+        p.casosDePrueba = p.casosDePrueba.filter(
+          (cp) => parseInt(cp.id) !== parseInt(caso.id)
+        );
+      }
+    });
+  }
+
+  // Guardar todo nuevamente
+  localStorage.setItem("casosDePrueba", JSON.stringify(casos));
+  localStorage.setItem("proyectos", JSON.stringify(proyectos));
+
+  // Refrescar vista si aplica
+  renderizarCasos();
+}
+
 // ==== VARIABLES ====
 let form = document.getElementById("formCaso");
 let lista = document.getElementById("listaCasos");
