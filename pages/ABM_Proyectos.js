@@ -66,6 +66,13 @@ fetch("../data/data.json")
       return proyecto;
     });
 
+    // 🟢 Ajustar el contador para evitar IDs duplicados
+    const maxId = proyectos.length
+      ? Math.max(...proyectos.map((p) => parseInt(p.id)))
+      : 0;
+    proyectoId = maxId + 1;
+    localStorage.setItem("proyectoId", proyectoId);
+
     renderizarProyectos();
   })
   .catch((error) => {
