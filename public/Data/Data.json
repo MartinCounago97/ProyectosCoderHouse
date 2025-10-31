@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Balón Spalding",
+      "price": 60,
+      "image": "https://spalding.uy/wp-content/uploads/a.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Zapatillas Nike",
+      "price": 120,
+      "image": "https://i.pinimg.com/474x/32/30/0b/32300b9824bea21f11b49bc5d676c776.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Camiseta Adidas",
+      "price": 80,
+      "image": "https://manchasport.es/5757-large_default/camiseta-adidas-logo.jpg"
+    }
+  ]
+}
