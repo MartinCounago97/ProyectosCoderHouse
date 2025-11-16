@@ -17,6 +17,12 @@
       "name": "Té para dos",
       "price": 750,
       "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/2d/dc/64/did-someone-say-brunch.jpg?w=900&h=500&s=1"
+    },
+    {
+      "id": 4,
+      "name": "Té para cuatro",
+      "price": 900,
+      "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/2d/dc/64/did-someone-say-brunch.jpg?w=900&h=500&s=1"
     }
   ]
 }
