@@ -1,4 +1,5 @@
 import "./ItemListContainer.css";
+import { Link } from "react-router-dom";
 
 const ItemListContainer = ({ product, addToCart }) => {
   return (
@@ -8,6 +9,9 @@ const ItemListContainer = ({ product, addToCart }) => {
       <p>${product.price}</p>
       <button className="add-btn" onClick={() => addToCart(product)}>
         Agregar al carrito
+      </button>
+      <button className="add-btn">
+        <Link to={`/detalle/${product.id}`}> Detalle</Link>
       </button>
     </div>
   );
