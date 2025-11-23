@@ -1,0 +1,22 @@
+.cart-widget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon {
+  width: 35px; /* ACHICA EL ICONO */
+  height: auto;
+  cursor: pointer;
+}
+
+.cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}

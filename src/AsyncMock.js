@@ -7,7 +7,7 @@ export const getProducts = () => {
           resolve(data.products);
         })
         .catch((error) => console.error("Error cargando productos:", error));
-    }, 1000); // Simula un retraso de 1 segundo
+    }, 1000);
   });
 };
 
@@ -17,7 +17,7 @@ export const getProductById = (id) => {
       fetch("/Data/Data.json")
         .then((response) => response.json())
         .then((data) => {
-          const product = data.products.find((p) => p.id === id);
+          const product = data.products.find((p) => p.id == id);
           if (product) {
             resolve(product);
           } else {
@@ -25,6 +25,20 @@ export const getProductById = (id) => {
           }
         })
         .catch((error) => console.error("Error cargando producto:", error));
-    }, 1000); // Simula un retraso de 1 segundo
+    }, 1000);
+  });
+};
+
+export const getProductsByCategory = (category) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      fetch("/Data/Data.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const products = data.products.filter((p) => p.category === category);
+          resolve(products);
+        })
+        .catch((error) => console.error("Error cargando productos:", error));
+    }, 1000);
   });
 };

@@ -2,26 +2,30 @@ import "./NavBar.css";
 import CartWidget from "../CartWidget/CartWidget.jsx";
 import { Link, NavLink } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = (cart) => {
   return (
     <header>
-      <h1>Medialunas calentitas</h1>
+      <h1>
+        <Link to="/" className="home-link">
+          Medialunas calentitas
+        </Link>
+      </h1>
       <nav>
         <ul>
           <li>
-            <NavLink to="/Promociones">Promociones</NavLink>
+            <NavLink to="category/Promociones">Promociones</NavLink>
           </li>
           <li>
             {" "}
-            <NavLink to="/Dulces">Dulces</NavLink>
+            <NavLink to="category/Dulces">Dulces</NavLink>
           </li>
           <li>
             {" "}
-            <NavLink to="/Salados">Salados</NavLink>
+            <NavLink to="category/Salados">Salados</NavLink>
           </li>
         </ul>
       </nav>
-      <CartWidget />
+      <CartWidget cart={cart} />
     </header>
   );
 };
