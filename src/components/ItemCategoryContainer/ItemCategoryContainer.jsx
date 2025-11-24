@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductsByCategory } from "../../AsyncMock";
 import ItemListContainer from "../ItemListContainer/ItemListContainer";
+import "./ItemCategoryContainer.css";
 
 const CategoryContainer = ({ setCart }) => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const CategoryContainer = ({ setCart }) => {
   }, [id]);
 
   return (
-    <div>
+    <div className="category-container">
       <h2>Categoria: {id}</h2>
 
       {products.length === 0 ? (

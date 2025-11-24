@@ -1,19 +1,14 @@
 import React from "react";
 import "./ItemDetail.css";
 
-export const ItemDetail = ({ id, name, price, image }) => {
+export const ItemDetail = ({ name, price, image }) => {
   return (
     <div className="item-detail-container">
-      <div className="item-detail-image">
-        <img src={image} alt={name} />
-      </div>
+      <img src={image} alt={name} className="item-detail-image" />
 
-      <div className="item-detail-info">
-        <h2>{name}</h2>
-        <p>ID: {id}</p>
+      <h2 className="item-detail-title">{name}</h2>
 
-        <p className="item-detail-price">${price}</p>
-      </div>
+      <p className="item-detail-price">${price}</p>
     </div>
   );
 };
