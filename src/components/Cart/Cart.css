@@ -2,12 +2,41 @@
   background: white;
   border: 1px solid #e5e5e5;
   padding: 15px;
-  margin: 20px;
+  margin: 20px auto;
   border-radius: 10px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
 }
 
 .cart h3 {
   color: #444;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.cart p {
+  margin: 6px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+/* BOTÓN VACIAR CARRITO */
+.cart button {
+  margin-top: 20px;
+  padding: 10px 14px;
+  background-color: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.cart button:hover {
+  background-color: #c62828;
+}
+
+.cart button:active {
+  transform: scale(0.97);
 }

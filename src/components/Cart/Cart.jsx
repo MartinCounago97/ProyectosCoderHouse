@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { CartContext } from "../Providers/CartContext";
+import "./Cart.css";
 
 const Cart = () => {
-  const { cartList } = useContext(CartContext);
+  const { cartList, removeList } = useContext(CartContext);
 
   return (
     <div className="cart">
@@ -17,6 +18,8 @@ const Cart = () => {
           </p>
         ))
       )}
+
+      <button onClick={removeList}>Vaciar carrito</button>
     </div>
   );
 };
