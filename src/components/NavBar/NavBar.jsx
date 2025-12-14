@@ -2,7 +2,7 @@ import "./NavBar.css";
 import CartWidget from "../CartWidget/CartWidget.jsx";
 import { Link, NavLink } from "react-router-dom";
 
-const NavBar = (cart) => {
+const NavBar = () => {
   return (
     <header>
       <h1>
@@ -10,22 +10,22 @@ const NavBar = (cart) => {
           Medialunas calentitas
         </Link>
       </h1>
+
       <nav>
         <ul>
           <li>
-            <NavLink to="category/Promociones">Promociones</NavLink>
+            <NavLink to="/category/Promociones">Promociones</NavLink>
           </li>
           <li>
-            {" "}
-            <NavLink to="category/Dulces">Dulces</NavLink>
+            <NavLink to="/category/Dulces">Dulces</NavLink>
           </li>
           <li>
-            {" "}
-            <NavLink to="category/Salados">Salados</NavLink>
+            <NavLink to="/category/Salados">Salados</NavLink>
           </li>
         </ul>
       </nav>
-      <CartWidget cart={cart} />
+
+      <CartWidget />
     </header>
   );
 };
