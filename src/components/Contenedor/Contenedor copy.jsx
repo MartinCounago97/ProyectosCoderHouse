@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import ItemListContainer from "../ItemListContainer/ItemListContainer.jsx";
 import "./Contenedor.css";
-import { getProducts } from "../../AsyncMock.js";
 
 const Contenedor = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getProducts()
+    fetch("/Data/Data.json")
+      .then((response) => response.json())
       .then((data) => {
-        setProducts(data);
+        setProducts(data.products);
       })
       .catch((error) => console.error("Error cargando productos:", error));
   }, []);

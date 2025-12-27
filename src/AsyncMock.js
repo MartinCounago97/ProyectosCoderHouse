@@ -1,44 +1,23 @@
+import { db } from "./FireBaseConfig";
+import { collection, getDocs } from "firebase/firestore";
+
 export const getProducts = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      fetch("/Data/Data.json")
-        .then((response) => response.json())
-        .then((data) => {
-          resolve(data.products);
-        })
-        .catch((error) => console.error("Error cargando productos:", error));
-    }, 1000);
-  });
+  const productosCollection = collection(db, "productos");
+  return getDocs(productosCollection)
+    .then((respuesta) => {
+      const productsFormateados = [];
+      respuesta.docs.forEach((doc) => {
+        productsFormateados.push(doc.data());
+      });
+      return productsFormateados;
+    })
+    .catch((error) => {
+      console.error("Error obteniendo productos:", error);
+    });
 };
 
-export const getProductById = (id) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      fetch("/Data/Data.json")
-        .then((response) => response.json())
-        .then((data) => {
-          const product = data.products.find((p) => p.id == id);
-          if (product) {
-            resolve(product);
-          } else {
-            reject("Producto no encontrado");
-          }
-        })
-        .catch((error) => console.error("Error cargando producto:", error));
-    }, 1000);
-  });
-};
+getProducts();
 
-export const getProductsByCategory = (category) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      fetch("/Data/Data.json")
-        .then((response) => response.json())
-        .then((data) => {
-          const products = data.products.filter((p) => p.category === category);
-          resolve(products);
-        })
-        .catch((error) => console.error("Error cargando productos:", error));
-    }, 1000);
-  });
-};
+export const getProductById = (id) => {};
+
+export const getProductsByCategory = (category) => {};
