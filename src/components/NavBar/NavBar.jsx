@@ -44,6 +44,11 @@ const NavBar = () => {
               Salados
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/MisCompras" className="nav-item">
+              Mis compras
+            </NavLink>
+          </li>
 
           {/*
 <li>

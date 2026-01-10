@@ -11,8 +11,8 @@
 - Ver carrito de compras
 - Eliminar producto del carrito
 - Limpiar carrito
-- Finalizar compra
-- Ver historial de mis compras
+- Finalizar compra --> solo si se esta logueado
+- Ver historial de mis compras --> solo si se esta logueado
 
 ## DEPLOY
 

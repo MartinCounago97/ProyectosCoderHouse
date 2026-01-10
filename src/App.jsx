@@ -6,6 +6,7 @@ import Cart from "./components/Cart/Cart.jsx";
 import ItemCategoryContainer from "./components/ItemCategoryContainer/ItemCategoryContainer.jsx";
 import Login from "./components/Login/Login.jsx";
 import RegistroUsuario from "./components/RegistroUsuario/RegistroUsuario.jsx";
+import MisCompras from "./components/MisCompras/MisCompras.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/RegistroUsuario" element={<RegistroUsuario />} />
+        <Route path="/MisCompras" element={<MisCompras />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/detalle/:id" element={<ItemDetailContainer />} />
         <Route path="/category/:id" element={<ItemCategoryContainer />} />
