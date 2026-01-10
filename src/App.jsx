@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar/navBar.jsx";
 import { Routes, Route } from "react-router-dom";
 import Cart from "./components/Cart/Cart.jsx";
 import ItemCategoryContainer from "./components/ItemCategoryContainer/ItemCategoryContainer.jsx";
+import Login from "./components/Login/Login.jsx";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <NavBar />
 
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/detalle/:id" element={<ItemDetailContainer />} />
         <Route path="/category/:id" element={<ItemCategoryContainer />} />

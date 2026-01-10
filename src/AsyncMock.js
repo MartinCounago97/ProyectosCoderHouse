@@ -1,4 +1,4 @@
-import { db } from "./FireBaseConfig";
+import { db } from "./components/firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { addDoc, getDoc, doc } from "firebase/firestore";
 
