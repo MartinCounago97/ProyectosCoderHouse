@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Autenticacion/AuthContext.jsx";
-import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase.js";
 import { useNavigate } from "react-router-dom";
 import "./MisCompras.css";
@@ -23,8 +23,7 @@ const MisCompras = () => {
       try {
         const q = query(
           collection(db, "orders"),
-          where("userId", "==", user.uid),
-          orderBy("date", "desc")
+          where("userId", "==", user.uid)
         );
 
         const querySnapshot = await getDocs(q);

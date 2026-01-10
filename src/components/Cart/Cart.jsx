@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { CartContext } from "../Providers/CartContext";
 import { AuthContext } from "../Autenticacion/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { db } from "../firebase/firebase.js";
 import "./Cart.css";
 
@@ -32,7 +32,7 @@ const Cart = () => {
       email: user.email,
       items: cartList,
       total,
-      date: serverTimestamp(),
+      createdAt: Timestamp.now(),
     };
 
     try {
