@@ -19,7 +19,10 @@ const Cart = () => {
         ))
       )}
 
-      <button onClick={removeList}>Vaciar carrito</button>
+      <div className="cart-buttons">
+        <button onClick={removeList}>Vaciar carrito</button>
+        <button className="btn-finalizar">Finalizar compra</button>
+      </div>
     </div>
   );
 };

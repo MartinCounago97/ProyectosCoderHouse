@@ -4,6 +4,7 @@ import { auth } from "../firebase/firebase.js";
 import { AuthContext } from "../Autenticacion/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import "./Login.css";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,13 +20,12 @@ export const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/"); // redirige al home
+      navigate("/");
     } catch (err) {
       setError(`Email o contraseña incorrectos: ${err.message}`);
     }
   };
 
-  // Si ya está logueado, no mostramos el login
   useEffect(() => {
     if (user) {
       navigate("/");
@@ -34,29 +34,31 @@ export const Login = () => {
 
   return (
     <div className="login-container">
-      <h2>Iniciar sesión</h2>
+      <div className="login-card">
+        <h2>Iniciar sesión</h2>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-        <button type="submit">Entrar</button>
+          <button type="submit">Entrar</button>
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
-      </form>
+          {error && <p className="login-error">{error}</p>}
+        </form>
+      </div>
     </div>
   );
 };

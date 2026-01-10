@@ -1,9 +1,9 @@
 .cart {
   background: white;
   border: 1px solid #e5e5e5;
-  padding: 15px;
+  padding: 20px;
   margin: 20px auto;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
   max-width: 600px;
 }
@@ -11,6 +11,7 @@
 .cart h3 {
   color: #444;
   margin-bottom: 15px;
+  font-size: 18px;
 }
 
 .cart p {
@@ -19,12 +20,14 @@
   font-size: 14px;
 }
 
-/* BOTÓN VACIAR CARRITO */
-.cart button {
+.cart-buttons {
+  display: flex;
+  gap: 12px;
   margin-top: 20px;
-  padding: 10px 14px;
-  background-color: #e53935;
-  color: #fff;
+}
+
+.cart button {
+  padding: 10px 16px;
   border: none;
   border-radius: 8px;
   font-size: 14px;
@@ -33,10 +36,24 @@
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
+.cart button {
+  background-color: #e53935;
+  color: #fff;
+}
+
 .cart button:hover {
   background-color: #c62828;
 }
 
 .cart button:active {
   transform: scale(0.97);
+}
+
+.cart .btn-finalizar {
+  background-color: #2e7d32;
+  color: #fff;
+}
+
+.cart .btn-finalizar:hover {
+  background-color: #1b5e20;
 }

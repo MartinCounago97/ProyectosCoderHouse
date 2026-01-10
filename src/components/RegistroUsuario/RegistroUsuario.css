@@ -1,48 +1,55 @@
-.login-container {
+.registroContainer {
   min-height: 100vh;
   background-color: #fff4b2;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   padding-top: 120px;
 }
 
-.login-card {
+.registroContainer h2 {
   background-color: #ffffff;
   width: 100%;
   max-width: 380px;
-  padding: 30px 35px;
-  border-radius: 10px;
+  padding: 25px 35px 0 35px;
+  margin: 0;
+  border-radius: 10px 10px 0 0;
   border: 1px solid #e5e5e5;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.login-card h2 {
+  border-bottom: none;
   text-align: center;
-  margin-bottom: 25px;
   color: #444;
 }
 
-.login-card form {
+.registroContainer form {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 380px;
+  padding: 20px 35px 30px 35px;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
+
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.login-card input {
+.registroContainer input {
   padding: 10px 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 14px;
 }
 
-.login-card input:focus {
+.registroContainer input:focus {
   outline: none;
   border-color: #f4c430;
   box-shadow: 0 0 0 2px rgba(244, 196, 48, 0.3);
 }
 
-.login-card button {
+.registroContainer button {
   margin-top: 10px;
   padding: 10px;
   background-color: #f4c430;
@@ -53,13 +60,18 @@
   transition: background-color 0.2s ease;
 }
 
-.login-card button:hover {
+.registroContainer button:hover {
   background-color: #e0b800;
 }
 
-.login-error {
+.registroContainer .error {
   color: #b00020;
   font-size: 14px;
   text-align: center;
-  margin-top: 5px;
+}
+
+.registroContainer .success {
+  color: #2e7d32;
+  font-size: 14px;
+  text-align: center;
 }
