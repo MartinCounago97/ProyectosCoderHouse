@@ -1,6 +1,6 @@
 import Contenedor from "./components/Contenedor/Contenedor.jsx";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer.jsx";
-import NavBar from "./components/NavBar/navBar.jsx";
+import NavBar from "./components/NavBar/NavBar.jsx";
 import { Routes, Route } from "react-router-dom";
 import Cart from "./components/Cart/Cart.jsx";
 import ItemCategoryContainer from "./components/ItemCategoryContainer/ItemCategoryContainer.jsx";
