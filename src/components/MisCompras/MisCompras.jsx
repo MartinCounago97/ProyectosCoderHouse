@@ -56,22 +56,23 @@ const MisCompras = () => {
       ) : (
         orders.map((order) => (
           <div key={order.id} className="order-card">
-            <p>
-              <strong>Fecha:</strong>{" "}
-              {order.date?.toDate().toLocaleDateString()}
-            </p>
-
-            <p>
-              <strong>Total:</strong> ${order.total}
-            </p>
-
-            <ul>
+            <p className="productos">Productos:</p>
+            <ul className="productos-list">
               {order.items.map((item, i) => (
-                <li key={i}>
-                  {item.name} x {item.qty} — ${item.price * item.qty}
+                <li key={i} className="producto-item">
+                  <span className="producto-nombre">
+                    {item.name} x {item.qty}
+                  </span>
+                  <span className="producto-precio">
+                    ${item.price * item.qty}
+                  </span>
                 </li>
               ))}
             </ul>
+
+            <p className="total">
+              <strong>Total:</strong> ${order.total}
+            </p>
           </div>
         ))
       )}

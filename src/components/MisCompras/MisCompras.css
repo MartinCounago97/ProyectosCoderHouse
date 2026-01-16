@@ -1,15 +1,18 @@
+/* Contenedor principal */
 .mis-compras {
   max-width: 900px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
+/* Título */
 .mis-compras h2 {
   text-align: center;
   margin-bottom: 30px;
   color: #444;
 }
 
+/* Loading */
 .loading {
   text-align: center;
   font-size: 18px;
@@ -20,42 +23,70 @@
 /* Card de cada compra */
 .order-card {
   background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .order-card:hover {
   transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-.order-card p {
-  margin: 6px 0;
-  color: #333;
-  font-size: 18px;
-}
-
-.order-card strong {
+/* Título Productos */
+.productos {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 12px;
   color: #222;
+  text-align: left;
 }
 
 /* Lista de productos */
-.order-card ul {
-  margin-top: 15px;
-  padding-left: 20px;
+.productos-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
 }
 
-.order-card li {
-  margin-bottom: 6px;
+/* Cada producto (fila) */
+.producto-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
   font-size: 16px;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+/* Nombre del producto */
+.producto-nombre {
+  color: #333;
+  line-height: 1.4;
+}
+
+/* Precio del producto */
+.producto-precio {
   color: #555;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* Total */
+.total {
+  text-align: right;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 2px solid #eee;
+  color: #111;
 }
 
 /* Mensaje sin compras */
 .mis-compras p {
-  text-align: center;
   font-size: 18px;
   color: #666;
 }
@@ -63,11 +94,18 @@
 /* Responsive */
 @media (max-width: 600px) {
   .order-card {
-    padding: 15px;
+    padding: 18px;
   }
 
-  .order-card p,
-  .order-card li {
+  .producto-item {
     font-size: 14px;
+  }
+
+  .productos {
+    font-size: 18px;
+  }
+
+  .total {
+    font-size: 16px;
   }
 }
