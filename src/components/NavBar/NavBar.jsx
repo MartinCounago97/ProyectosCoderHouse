@@ -50,13 +50,13 @@ const NavBar = () => {
             </NavLink>
           </li>
 
-          {/*
-<li>
-  <button className="nav-item" onClick={CargarDatos}>
-    Agregar producto
-  </button>
-</li>
-*/}
+          {!loading && user?.email === "admin@gmail.com" && (
+            <li>
+              <button className="nav-item" onClick={CargarDatos}>
+                Cargar productos
+              </button>
+            </li>
+          )}
 
           {!loading && (
             <>

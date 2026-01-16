@@ -53,6 +53,7 @@ export const getProductsByCategory = (category) => {
       return [];
     });
 };
+
 export function CargarDatos() {
   const misProductos = [
     {
