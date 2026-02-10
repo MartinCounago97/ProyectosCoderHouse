@@ -1,0 +1,20 @@
+{
+  "name": "back1-parte2",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^8.0.3",
+    "mongoose": "^7.3.1",
+    "multer": "^1.4.5-lts.1",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

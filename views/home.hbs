@@ -1,0 +1,19 @@
+{{!< main    }}{{! Extiende de main.hbs}}
+<section class="container">
+  <h1>Bienvenido a mi sitio web</h1>
+  {{#if msg}}
+    <p class="alert">{{msg}}</p>
+  {{/if}}
+
+  <p>Este es el contenido de la página de inicio.</p>
+
+  <ul>
+    <li><a href="/upload">Subir un archivo</a></li>
+    <li><a href="/about">Acerca de</a></li>
+    <li><a href="/contact">Contacto</a></li>
+  </ul>
+
+  <div class="container logo">
+    <img src="/static/imagenes/logo.png" alt="Logo" />
+  </div>
+</section>
