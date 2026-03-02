@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="header">
+    <div class="brand">
+      <h1 style="margin:0;">Tienda</h1>
+    </div>
+    <div class="nav">
+      <a class="btn" href="/carrito">🛒 Ver carrito</a>
+      <a class="btn" href="/realtimeproducts">⚙️ Admin</a>
+    </div>
+  </div>
+
+  <div class="grid">
+    {{#each productos}}
+      <div class="card cardProducto" data-id="{{this._id}}">
+        <h3>{{this.titulo}}</h3>
+        <p>{{this.descripcion}}</p>
+
+        <div class="info">
+          <div class="price">${{this.precio}}</div>
+          <div class="muted">Stock: {{this.stock}}</div>
+        </div>
+
+        <div class="acciones">
+          {{#if this.stock}}
+            <div class="cantidadBox">
+              <span class="muted">Cantidad</span>
+              <input
+                type="number"
+                min="1"
+                max="{{this.stock}}"
+                value="1"
+                class="input inputCantidad"
+              />
+            </div>
+
+            <button class="btn btn--primary btnAgregarCarrito">
+              Agregar
+            </button>
+          {{else}}
+            <div class="muted" style="color:#ef4444;">Sin stock</div>
+            <button class="btn" disabled style="opacity:0.5;">Sin stock</button>
+          {{/if}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  <script src="/carrito.js"></script>
+</div>

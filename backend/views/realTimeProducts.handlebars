@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="header">
+    <div class="brand">
+      <h1 style="margin:0;">Admin Productos</h1>
+      <span class="badge">RealTime</span>
+    </div>
+    <div class="nav">
+      <a class="btn" href="/">Tienda</a>
+      <a class="btn" href="/carrito">🛒 Carrito</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0;">Crear producto</h3>
+
+    <form id="createForm" class="form">
+      <div>
+        <label class="muted">Título</label>
+        <input
+          class="input"
+          name="titulo"
+          placeholder="Ej: Mouse Gamer"
+          required
+        />
+      </div>
+
+      <div>
+        <label class="muted">Descripción</label>
+        <input class="input" name="descripcion" placeholder="Ej: RGB 7200dpi" />
+      </div>
+
+      <div>
+        <label class="muted">Precio</label>
+        <input
+          class="input"
+          name="precio"
+          placeholder="0"
+          type="number"
+          min="0"
+          required
+        />
+      </div>
+
+      <div>
+        <label class="muted">Stock</label>
+        <input
+          class="input"
+          name="stock"
+          placeholder="0"
+          type="number"
+          min="0"
+        />
+      </div>
+
+      <div style="display:flex; align-items:end;">
+        <button class="btn btn--primary" type="submit">Crear</button>
+      </div>
+    </form>
+  </div>
+
+  <hr class="hr" />
+
+  <h3>Productos existentes</h3>
+
+  <div class="list" id="productosList"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/realtime.js"></script>
+</div>

@@ -1,0 +1,32 @@
+{
+  "name": "proyectoscoderhouse",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MartinCounago97/ProyectosCoderHouse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MartinCounago97/ProyectosCoderHouse/issues"
+  },
+  "homepage": "https://github.com/MartinCounago97/ProyectosCoderHouse#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-handlebars": "^8.0.3",
+    "mongoose": "^7.3.1",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
