@@ -21,14 +21,6 @@ La creación/eliminación/edición se realiza por WebSockets (Socket.io), sin us
 
 ---
 
-## Requisitos
-
-- Node.js (recomendado v18+)
-- MongoDB corriendo en `mongodb://127.0.0.1:27017/qa-manager`
-  - Se recomienda correr Mongo con Docker.
-
----
-
 ## Levantar MongoDB con Docker (recomendado)
 
 ```bash

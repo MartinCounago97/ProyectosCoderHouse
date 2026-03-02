@@ -1,0 +1,99 @@
+{
+  "info": {
+    "name": "Ecommerce Backend - Carritos",
+    "_postman_id": "ecommerce-carritos-collection",
+    "description": "Colección para probar endpoints de carritos y productos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Crear carrito",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/carritos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "carritos"]
+        }
+      }
+    },
+    {
+      "name": "Obtener carrito por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/carritos/{{cid}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "carritos", "{{cid}}"]
+        }
+      }
+    },
+    {
+      "name": "Agregar producto al carrito",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cantidad\": 2\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/carritos/{{cid}}/productos/{{pid}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "carritos", "{{cid}}", "productos", "{{pid}}"]
+        }
+      }
+    },
+    {
+      "name": "Eliminar producto del carrito",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/carritos/{{cid}}/productos/{{pid}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "carritos", "{{cid}}", "productos", "{{pid}}"]
+        }
+      }
+    },
+    {
+      "name": "Vaciar carrito",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/carritos/{{cid}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "carritos", "{{cid}}"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "cid",
+      "value": ""
+    },
+    {
+      "key": "pid",
+      "value": ""
+    }
+  ]
+}
