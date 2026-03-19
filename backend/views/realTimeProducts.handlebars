@@ -1,12 +1,16 @@
+<script>if(!localStorage.getItem("userId"))window.location.replace("/login");</script>
 <div class="container">
   <div class="header">
     <div class="brand">
-      <h1 style="margin:0;">Admin Productos</h1>
-      <span class="badge">RealTime</span>
+      <h1 style="margin:0;">Back2Coder</h1>
+      <span class="badge">Admin</span>
     </div>
     <div class="nav">
+      <span id="usuarioHeader" class="badge"></span>
       <a class="btn" href="/">Tienda</a>
-      <a class="btn" href="/carrito">🛒 Carrito</a>
+      <a class="btn" href="/carrito">Carrito</a>
+      <a class="btn" href="/ventas">Ventas</a>
+      <a id="btnLogout" class="btn btn--danger" href="#">Salir</a>
     </div>
   </div>
 
@@ -15,7 +19,7 @@
 
     <form id="createForm" class="form">
       <div>
-        <label class="muted">Título</label>
+        <label class="muted">Titulo</label>
         <input
           class="input"
           name="titulo"
@@ -25,7 +29,7 @@
       </div>
 
       <div>
-        <label class="muted">Descripción</label>
+        <label class="muted">Descripcion</label>
         <input class="input" name="descripcion" placeholder="Ej: RGB 7200dpi" />
       </div>
 
@@ -60,10 +64,21 @@
 
   <hr class="hr" />
 
-  <h3>Productos existentes</h3>
+  <h3 class="section-title">Productos existentes</h3>
 
   <div class="list" id="productosList"></div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="/realtime.js"></script>
+  <script>
+    document.getElementById("usuarioHeader").textContent =
+      localStorage.getItem("userName") || "";
+    document.getElementById("btnLogout").addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem("userId");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("cid");
+      window.location.href = "/login";
+    });
+  </script>
 </div>

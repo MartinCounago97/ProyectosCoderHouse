@@ -27,11 +27,11 @@ async function agregarAlCarrito(pid, cantidad) {
   const data = await respuesta.json().catch(() => null);
 
   if (!respuesta.ok) {
-    alert(data?.error || "Error al agregar producto al carrito");
+    Swal.fire({ icon: "error", title: "Error", text: data?.error || "Error al agregar producto al carrito", background: "#13151f", color: "#e8eaed", confirmButtonColor: "#e8a838" });
     return;
   }
 
-  alert(`Se agregaron ${cantidad} unidades al carrito`);
+  Swal.fire({ icon: "success", title: "Agregado", text: `Se agregaron ${cantidad} unidades al carrito`, background: "#13151f", color: "#e8eaed", confirmButtonColor: "#e8a838", timer: 1800, showConfirmButton: false });
 }
 
 document.addEventListener("click", (e) => {
@@ -44,7 +44,7 @@ document.addEventListener("click", (e) => {
   let cantidad = parseInt(inputCantidad.value);
 
   if (isNaN(cantidad) || cantidad < 1) {
-    alert("Cantidad inválida");
+    Swal.fire({ icon: "warning", title: "Cantidad invalida", text: "Ingresa una cantidad valida.", background: "#13151f", color: "#e8eaed", confirmButtonColor: "#e8a838" });
     return;
   }
 

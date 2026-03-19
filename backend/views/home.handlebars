@@ -1,12 +1,21 @@
+<script>if(!localStorage.getItem("userId"))window.location.replace("/login");</script>
 <div class="container">
   <div class="header">
     <div class="brand">
-      <h1 style="margin:0;">Tienda</h1>
+      <h1 style="margin:0;">Back2Coder</h1>
+      <span class="badge">Tienda</span>
     </div>
     <div class="nav">
-      <a class="btn" href="/carrito">🛒 Ver carrito</a>
-      <a class="btn" href="/realtimeproducts">⚙️ Admin</a>
+      <span id="usuarioHeader" class="badge"></span>
+      <a class="btn" href="/carrito">Carrito</a>
+      <a class="btn" href="/ventas">Ventas</a>
+      <a class="btn" href="/realtimeproducts">Admin</a>
+      <a id="btnLogout" class="btn btn--danger" href="#">Salir</a>
     </div>
+  </div>
+
+  <div class="search-wrap">
+    <input id="filtroProducto" class="input" type="text" placeholder="Buscar productos..." />
   </div>
 
   <div class="grid">
@@ -17,7 +26,7 @@
 
         <div class="info">
           <div class="price">${{this.precio}}</div>
-          <div class="muted">Stock: {{this.stock}}</div>
+          <div class="stock-tag muted">Stock: {{this.stock}}</div>
         </div>
 
         <div class="acciones">
@@ -37,8 +46,8 @@
               Agregar
             </button>
           {{else}}
-            <div class="muted" style="color:#ef4444;">Sin stock</div>
-            <button class="btn" disabled style="opacity:0.5;">Sin stock</button>
+            <div class="stock-tag stock-tag--out">Sin stock</div>
+            <button class="btn" disabled style="opacity:0.35;cursor:not-allowed;">Agotado</button>
           {{/if}}
         </div>
       </div>
@@ -46,4 +55,22 @@
   </div>
 
   <script src="/carrito.js"></script>
+  <script>
+    document.getElementById("usuarioHeader").textContent =
+      localStorage.getItem("userName") || "";
+    document.getElementById("btnLogout").addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem("userId");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("cid");
+      window.location.href = "/login";
+    });
+    document.getElementById("filtroProducto").addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll(".cardProducto").forEach((card) => {
+        const titulo = card.querySelector("h3").textContent.toLowerCase();
+        card.style.display = titulo.includes(q) ? "" : "none";
+      });
+    });
+  </script>
 </div>

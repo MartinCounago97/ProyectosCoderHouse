@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Usuario from "../models/usuario.model.js";
-import { Mongoose } from "mongoose";
+
 
 const router = Router();
 
@@ -21,6 +21,18 @@ router.post("/", async (req, res) => {
     res.status(201).json(nuevoUsuario);
   } catch (error) {
     res.status(500).json({ error: "Error al crear usuario" });
+  }
+});
+
+router.post("/login", async (req, res) => {
+  try {
+    const { username } = req.body;
+    if (!username) return res.status(400).json({ error: "Username es requerido" });
+    const usuario = await Usuario.findOne({ username });
+    if (!usuario) return res.status(404).json({ error: "Usuario no encontrado" });
+    res.json(usuario);
+  } catch (error) {
+    res.status(500).json({ error: "Error al buscar usuario" });
   }
 });
 

@@ -10,6 +10,7 @@ import homeRouter from "./routes/home.router.js";
 import userRouter from "./routes/usuario.router.js";
 import viewsRouter from "./routes/views.router.js";
 import carrito from "./routes/carrito.router.js";
+import ventaRouter from "./routes/venta.router.js";
 
 import Producto from "./models/producto.model.js";
 
@@ -33,6 +34,7 @@ app.set("views", "./views");
 app.use("/api", homeRouter);
 app.use("/api/usuarios", userRouter);
 app.use("/api/carritos", carrito);
+app.use("/api/ventas", ventaRouter);
 
 app.use("/", viewsRouter);
 

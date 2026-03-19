@@ -64,10 +64,10 @@ form.addEventListener("submit", (e) => {
 });
 
 list.addEventListener("click", (e) => {
-  const li = e.target.closest("li");
-  if (!li) return;
+  const row = e.target.closest(".row");
+  if (!row) return;
 
-  const id = li.dataset.id;
+  const id = row.dataset.id;
 
   if (e.target.classList.contains("deleteBtn")) {
     socket.emit("productos:delete", id);
@@ -76,10 +76,10 @@ list.addEventListener("click", (e) => {
 
   if (e.target.classList.contains("saveBtn")) {
     const changes = {
-      titulo: li.querySelector(".titulo").value,
-      descripcion: li.querySelector(".descripcion").value,
-      precio: Number(li.querySelector(".precio").value),
-      stock: Number(li.querySelector(".stock").value),
+      titulo: row.querySelector(".titulo").value,
+      descripcion: row.querySelector(".descripcion").value,
+      precio: Number(row.querySelector(".precio").value),
+      stock: Number(row.querySelector(".stock").value),
     };
 
     socket.emit("productos:update", { id, changes });

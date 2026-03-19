@@ -3,32 +3,21 @@
   <div class="header">
     <div class="brand">
       <h1 style="margin:0;">Back2Coder</h1>
-      <span class="badge">Carrito</span>
+      <span class="badge">Ventas</span>
     </div>
     <div class="nav">
       <span id="usuarioHeader" class="badge"></span>
       <a class="btn" href="/">Tienda</a>
-      <a class="btn" href="/ventas">Ventas</a>
+      <a class="btn" href="/carrito">Carrito</a>
       <a class="btn" href="/realtimeproducts">Admin</a>
       <a id="btnLogout" class="btn btn--danger" href="#">Salir</a>
     </div>
   </div>
 
-  <div class="card">
-    <div id="estadoCarrito" class="muted" style="font-size:13px;">Cargando carrito...</div>
-    <div class="list" id="listaCarrito"></div>
+  <div id="ventasLoading" class="muted" style="font-size:13px;">Cargando ventas...</div>
+  <div class="list" id="ventasList"></div>
 
-    <hr class="hr" />
-
-    <h3 id="totalCarrito" style="margin:0 0 14px;font-family:'Outfit',sans-serif;font-size:20px;letter-spacing:-0.3px;"></h3>
-
-    <div class="cart-actions">
-      <button id="btnConfirmar" class="btn btn--primary" type="button">Confirmar compra</button>
-      <button id="btnVaciar" class="btn btn--danger" type="button">Vaciar</button>
-    </div>
-  </div>
-
-  <script src="carritoVista.js"></script>
+  <script src="/ventas.js"></script>
   <script>
     document.getElementById("usuarioHeader").textContent =
       localStorage.getItem("userName") || "";
